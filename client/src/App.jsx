@@ -9,6 +9,7 @@ import Projects from "./pages/Projects";
 
 //Components
 import Header from "./components/Header";
+import FooterCom from "./components/Footer";
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/projects" element={<Projects />} />
       </Routes>
+      <FooterCom/>
     </BrowserRouter>
   );
 }
