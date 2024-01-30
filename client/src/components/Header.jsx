@@ -44,7 +44,7 @@ export default function Header() {
           pill
           onClick={handleChangeTheme}
         >
-          {theme === "dark" ? <FaMoon /> : <FaSun />}
+          {theme === "dark" ? <FaSun /> : <FaMoon />}
         </Button>
         <Link to="/sign-in">
           {currentUser ? (
