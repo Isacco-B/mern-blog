@@ -2,16 +2,18 @@
 import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { signInSuccess, signInStart, signInFaliure } from "../redux/user/userSlice";
+import {
+  signInSuccess,
+  signInStart,
+  signInFaliure,
+} from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-
+import OAuth from "../components/OAuth";
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
-  const { loading, error: errorMessage } = useSelector(
-    (state) => state.user
-  );
-  const dispatch = useDispatch()
+  const { loading, error: errorMessage } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   function handleChange(e) {
@@ -21,10 +23,10 @@ export default function SignIn() {
   async function handleSubmit(e) {
     e.preventDefault();
     if ((!formData.email, !formData.password)) {
-      return dispatch(signInFaliure("Please fill all the fields"))
+      return dispatch(signInFaliure("Please fill all the fields"));
     }
     try {
-      dispatch(signInStart())
+      dispatch(signInStart());
       const res = await fetch("api/auth/signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -32,10 +34,10 @@ export default function SignIn() {
       });
       const data = await res.json();
       if (data.success === false) {
-        dispatch(signInFaliure(data.message))
+        dispatch(signInFaliure(data.message));
       }
       if (res.ok) {
-        dispatch(signInSuccess(data))
+        dispatch(signInSuccess(data));
         navigate("/");
       }
     } catch (error) {
@@ -95,6 +97,7 @@ export default function SignIn() {
                 "Sign In"
               )}
             </Button>
+            <OAuth />
           </form>
           <div className="flex gap-2 text-sm mt-5">
             <span>Dont have an account?</span>
