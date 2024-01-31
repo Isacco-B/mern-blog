@@ -36,6 +36,7 @@ export default function CreatePost() {
           theme="snow"
           placeholder="Write something..."
           className="h-72 mb-12"
+          id="content"
           required
         />
         <Button type="submit" gradientDuoTone="purpleToPink">
