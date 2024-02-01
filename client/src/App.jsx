@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import Projects from "./pages/Projects";
 import CreatePost from "./pages/CreatePost"
 import UpdatePost from "./pages/UpdatePost";
+import PostPage from "./pages/PostPage";
 
 //Components
 import Header from "./components/Header";
@@ -32,6 +33,7 @@ export default function App() {
           <Route path="/update-post/:postId" element={<UpdatePost />} />
         </Route>
         <Route path="/projects" element={<Projects />} />
+        <Route path="/post/:postSlug" element={<PostPage />} />
       </Routes>
       <FooterCom />
     </BrowserRouter>
