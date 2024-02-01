@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Table } from "flowbite-react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export default function DashPosts() {
   const [userPosts, setUserPosts] = useState([]);
+  const [showMore, setShowMore] = useState(true);
   const { currentUser } = useSelector((state) => state.user);
   console.log(userPosts);
 
@@ -15,6 +16,9 @@ export default function DashPosts() {
         const data = await res.json();
         if (res.ok) {
           setUserPosts(data.posts);
+          if (data.posts.length < 9) {
+            setShowMore(false);
+          }
         }
       } catch (error) {
         console.log(error.message);
@@ -24,8 +28,24 @@ export default function DashPosts() {
       fetchPosts();
     }
   }, [currentUser.isAdmin, currentUser._id]);
+
+  async function handleShowMore() {
+    const startIndex = userPosts.length;
+    try {
+      const res = await fetch(`/api/post/getposts?userId=${currentUser._id}&startIndex=${startIndex}`)
+      const data = await res.json()
+      if (res.ok) {
+        setUserPosts((prev)=> [...prev, ...data.posts])
+        if (data.posts.length < 9) {
+          setShowMore(false)
+        }
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
-    <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-400 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
+    <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-400 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500 w-full">
       {currentUser.isAdmin && userPosts.length > 0 ? (
         <>
           <Table hoverable className="shadow-md">
@@ -79,6 +99,7 @@ export default function DashPosts() {
               </Table.Body>
             ))}
           </Table>
+          {showMore && <button className="w-full text-teal-500 self-center py-7" onClick={handleShowMore}>Show more</button>}
         </>
       ) : (
         ""
