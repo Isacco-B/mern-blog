@@ -15,7 +15,6 @@ export default function DashPosts() {
   const [postId, setPostId] = useState(null)
   const [showModal, setShowModal] = useState(false)
   const { currentUser } = useSelector((state) => state.user);
-  console.log(userPosts)
 
   useEffect(() => {
     const fetchPosts = async () => {
