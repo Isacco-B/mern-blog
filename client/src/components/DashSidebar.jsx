@@ -5,6 +5,7 @@ import {
   HiArrowSmRight,
   HiDocumentText,
   HiOutlineUserGroup,
+  HiChartPie,
 } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
@@ -45,7 +46,7 @@ export default function DashSidebar() {
           <Link to="/dashboard?tab=profile">
             <Sidebar.Item
               active={tab === "profile"}
-              icon={HiUser}
+              icon={HiChartPie}
               label={currentUser.isAdmin ? "Admin" : "User"}
               labelColor="dark"
               className="cursor-pointer"
@@ -56,6 +57,16 @@ export default function DashSidebar() {
           </Link>
           {currentUser.isAdmin && (
             <>
+              <Link to="/dashboard?tab=dash">
+                <Sidebar.Item
+                  active={tab === "dash"}
+                  icon={HiDocumentText}
+                  className="cursor-pointer"
+                  as="div"
+                >
+                  Dashboard
+                </Sidebar.Item>
+              </Link>
               <Link to="/dashboard?tab=posts">
                 <Sidebar.Item
                   active={tab === "posts"}
