@@ -1,7 +1,6 @@
 import { Sidebar } from "flowbite-react";
 import { useEffect, useState } from "react";
 import {
-  HiUser,
   HiArrowSmRight,
   HiDocumentText,
   HiOutlineUserGroup,
@@ -15,7 +14,7 @@ import { useSelector } from "react-redux";
 export default function DashSidebar() {
   const location = useLocation();
   const [tab, setTab] = useState("");
-  const { currentUser} = useSelector((state) => state.user);
+  const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
