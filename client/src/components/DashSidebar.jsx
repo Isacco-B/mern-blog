@@ -76,6 +76,16 @@ export default function DashSidebar() {
                   Users
                 </Sidebar.Item>
               </Link>
+              <Link to="/dashboard?tab=comments">
+                <Sidebar.Item
+                  active={tab === "comments"}
+                  icon={HiOutlineUserGroup}
+                  className="cursor-pointer"
+                  as="div"
+                >
+                  Comments
+                </Sidebar.Item>
+              </Link>
             </>
           )}
 

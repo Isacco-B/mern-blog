@@ -109,6 +109,7 @@ export default function CommentSection({ postId }) {
       );
       if (res.ok) {
         const data = await res.json();
+        console.log(data)
         setComments((comments.filter((comment)=> comment._id !== commentId)))
       }
 
