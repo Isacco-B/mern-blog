@@ -59,7 +59,7 @@ export default function Comment({ comment, onLike, handleEdit, onDelete }) {
           className="w-10 h-10 rounded-full bg-gray-200"
         />
       </div>
-      <div className="flex-1">
+      <div className="flex-1 max-w-2xl">
         <div className="flex items-center mb-1">
           <span className="font-bold mr-1 text-xs truncate">
             {user ? `@${user.username}` : "anonymous user"}
@@ -97,7 +97,9 @@ export default function Comment({ comment, onLike, handleEdit, onDelete }) {
           </>
         ) : (
           <>
-            <p className="text-gray-500 pb-2">{comment && comment.content}</p>
+            <p className="text-gray-500 pb-2 break-words w-full">
+              {comment && comment.content}
+            </p>
             <div className="flex items-center gap-2 my-2 border-t dark:border-gray-700 max-w-fit ">
               <button
                 className={`text-gray-400 hover:text-blue-500${
